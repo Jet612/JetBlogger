@@ -7,11 +7,11 @@ const useFetch = (url) => {
 
     useEffect(() => {   
         const abortController = new AbortController();
-
+        
         fetch(url, { signal: abortController.signal })
         .then(response => {
             if(!response.ok) {
-                throw Error('Failed to fetch data')
+                throw Error('Failed to fetch data');
             }
             return response.json();
         })
@@ -22,7 +22,7 @@ const useFetch = (url) => {
         })
         .catch(error => {
             if (error.name === 'AbortError') {
-                console.log('fetch aborted');
+                console.log(error);
             } else {
                 setError(error.message);
                 setIsPending(false);

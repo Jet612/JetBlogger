@@ -65,7 +65,6 @@
 }
 
 .navbar .links .bubble:hover {
-  color: #ffe7da;
   background-color: #ff6716;
 }
 
@@ -109,4 +108,93 @@
   font-size: 20px;
   color: #ff7f3b;
   margin-bottom: 8px;
+}
+
+.blog-preview {
+  color: #333;
+}
+
+.text-decoration-none {
+  text-decoration: none;
+}
+
+.back-button {
+  color: #333;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.back-button:hover {
+  color: #ff7f3b;
+}
+
+.blog-details h2 {
+  font-size: 30px;
+  color: #ff7f3b;
+  margin-bottom: 10px;
+  margin: 10px 0;
+}
+
+.blog-details p {
+  margin: 10px 0;
+}
+
+.blog-details div {
+  margin: 20px 0;
+}
+
+.blog-details button {
+  background: #ff7f3b;
+  color: #fff;
+  border: 0;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 15px;
+  margin-right: 10px;
+  transition: background 0.3s ease;
+}
+
+.blog-details button:hover {
+  background: #ff6716;
+}
+
+.create {
+  max-width: 400px;
+  margin: 0 auto;
+  text-align: center;
+}
+.create label {
+  text-align: left;
+  display: block;
+}
+.create h2 {
+  font-size: 25px;
+  color: #ff7f3b;
+  margin-bottom: 30px;
+}
+.create input, .create textarea, .create select {
+  width: 100%;
+  padding: 6px 10px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  box-sizing: border-box;
+  display: block;
+}
+.create button {
+  background: #ff7f3b;
+  color: #fff;
+  border: 0;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 15px;
+  width: 100%;
+  transition: background 0.3s ease;
+}
+
+.create button:hover {
+  background: #ff6716;
 }
