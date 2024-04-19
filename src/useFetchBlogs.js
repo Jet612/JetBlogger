@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { collection, getDocs } from 'firebase/firestore';
+import { collection, query, orderBy, getDocs } from 'firebase/firestore';
 import { db } from './firebase';
 
 const useFetchBlogs = () => {
@@ -11,7 +11,8 @@ const useFetchBlogs = () => {
     const fetchBlogs = async () => {
       setIsPending(true);
       try {
-        const querySnapshot = await getDocs(collection(db, 'blogs'));
+        const q = query(collection(db, 'blogs'), orderBy("timestamp", "desc"));
+        const querySnapshot = await await getDocs(q)
         const blogsData = [];
         querySnapshot.forEach((doc) => {
           blogsData.push({ id: doc.id, ...doc.data() });
