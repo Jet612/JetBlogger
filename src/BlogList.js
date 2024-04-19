@@ -5,8 +5,8 @@ const BlogList = ({ blogs }) => {
 		<div className="blog-list">
 			<h1>All Blogs</h1>
 			{blogs.map((blog) => (
-				<Link to={`/blogs/${blog.id}`} className="text-decoration-none">
-					<div className='blog-preview' key={blog.id}>
+				<Link to={`/blogs/${blog.id}`} className="text-decoration-none" key={blog.id}>
+					<div className='blog-preview'>
 						<h2>{blog.title}</h2>
 						<h5>{blog.body.length >= 100 ? blog.body.substring(0, 100) + '...' : blog.body}</h5>
 						<p>- {blog.author}</p>

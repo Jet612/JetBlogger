@@ -7,7 +7,7 @@ const Navbar = () => {
 	return (
 		<nav className="navbar">
 			<Link to="/" className="logo">
-				<h1 className="madimi-one-regular">Blogger</h1>
+				<h1 className="madimi-one-regular">JetBlogger</h1>
 			</Link>
 			<div className="links">
 				<Link to="/create" className="bubble">New Blog <FontAwesomeIcon icon={faPlus} /></Link>
