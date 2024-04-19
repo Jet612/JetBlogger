@@ -124,7 +124,8 @@
   border-radius: 4px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   z-index: 1;
-  padding: 20px 50px;
+  padding: 20px;
+  width: 600px;
   text-align: center;
 }
 
