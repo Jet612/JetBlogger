@@ -3,34 +3,37 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUpload } from '@awesome.me/kit-a2ceb3a490/icons/classic/solid';
 import { useNavigate } from 'react-router-dom';
 import { useUserContext } from './UserContext';
+import { collection, addDoc } from 'firebase/firestore';
+import { db } from './firebase';
+
 
 const Create = () => {
-	const [title, setTitle] = useState('');
-	const [body, setBody] = useState('');
-	const [author, setAuthor] = useState('');
-	const [isPending, setIsPending] = useState(false);
+  const navigate = useNavigate();
   const { authUser } = useUserContext();
-	const navigate = useNavigate();
-
-	const handleSubmit = (e) => {
-		e.preventDefault();
-		const blog = { title, body, author };
-		setIsPending(true);
-
-		fetch('https://blogger-api-livid.vercel.app/blogs', {
-			method: 'POST',
-			headers: { "Content-Type": "application/json" },
-			body: JSON.stringify(blog)
-		}).then(() => {
-			console.log('New blog added');
-			setIsPending(false);
-			navigate('/');
-		});
-	};
-
   if (!authUser) {
     navigate('/');
   }
+	const [title, setTitle] = useState('');
+	const [body, setBody] = useState('');
+	const [author, setAuthor] = useState(authUser.displayName);
+	const [isPending, setIsPending] = useState(false);
+
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		setIsPending(true);
+
+    const createBlog = async () => {
+      await addDoc(collection(db, 'blogs'), {
+        title: title,
+        body: body,
+        author: author
+      })
+      setIsPending(false);
+			navigate('/');
+    };
+
+    createBlog();
+	};
 
 	return (
 		<div className="create">
