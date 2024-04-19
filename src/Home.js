@@ -1,9 +1,9 @@
 import BlogList from './BlogList';
-import useFetch from './useFetch';
+import useFetchBlogs from './useFetchBlogs';
 //import { useUserContext } from './UserContext';
 
 const Home = () => {
-	const { data: blogs, isPending, error } = useFetch('https://blogger-api-livid.vercel.app/blogs');
+	const { blogs, isPending, error } = useFetchBlogs();
   //const { user } = useUserContext();
 
 	return (
