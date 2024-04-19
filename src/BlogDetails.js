@@ -4,15 +4,24 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faTrash } from '@awesome.me/kit-a2ceb3a490/icons/classic/solid';
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { doc, deleteDoc } from "firebase/firestore";
 import { db } from "./firebase";
+import { useUserContext } from "./UserContext";
 
 const BlogDetails = () => {
 	const { id } = useParams();
 	const { blog, isPending, error } = useFetchBlog(id);
 	const [confirmation, setConfirmation] = useState(false);
   const [isPendingDelete, setIsPendingDelete] = useState(false);
+  const { authUser } = useUserContext();
+  const [showDelete, setShowDelete] = useState(false);
+
+  useEffect(() => {
+    if (blog && authUser && blog.authorId === authUser.uid) {
+      setShowDelete(true);
+    }
+  }, [blog, authUser])
 	
 	const navigate = useNavigate();
 
@@ -28,11 +37,7 @@ const BlogDetails = () => {
     setIsPendingDelete(true);
 
     const createBlog = async () => {
-      await deleteDoc(doc(db, "blogs", id), {
-        title: blog.title,
-        body: blog.body,
-        author: blog.author
-      })
+      await deleteDoc(doc(db, "blogs", blog.id));
       setIsPendingDelete(false);
 			navigate('/');
     };
@@ -52,7 +57,7 @@ const BlogDetails = () => {
 					<h2>{blog.title}</h2>
 					<p>Written by {blog.author}</p>
 					<p>{blog.body}</p>
-					{blog.id !== "9zvmJ2BLhLjUypWV32e2" && blog.id !== "KQiU1vVlMM49wN7UqLjn" && (
+					{showDelete && (
 						<button onClick={() => setConfirmation(true)}>
 							<FontAwesomeIcon icon={faTrash} /> Delete
 						</button>

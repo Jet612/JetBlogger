@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUpload } from '@awesome.me/kit-a2ceb3a490/icons/classic/solid';
 import { useNavigate } from 'react-router-dom';
 import { useUserContext } from './UserContext';
-import { collection, addDoc } from 'firebase/firestore';
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { db } from './firebase';
 
 const Create = () => {
@@ -29,6 +29,8 @@ const Create = () => {
           title: title,
           body: body,
           author: author,
+          authorId: authUser.uid,
+          timestamp: serverTimestamp()
       });
 
       setIsPending(false);
