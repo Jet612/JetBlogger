@@ -27,7 +27,6 @@ const provider = new GoogleAuthProvider();
 provider.addScope("https://www.googleapis.com/auth/userinfo.email")
 
 // Firestore
-const db = getFirestore(app)
-db.settings({ timestampsInSnapshots: true })
+const db = getFirestore(app);
 
-export { app, analytics, provider };
+export { app, analytics, provider, db };
