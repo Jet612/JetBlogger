@@ -26,9 +26,6 @@ const Navbar = () => {
             <Link to="/create" className="bubble">
               New Blog <FontAwesomeIcon icon={faPlus} />
             </Link>
-            <button className="bubble" onClick={handleSignOut}>
-              Sign Out <FontAwesomeIcon icon={faLeftFromBracket} />
-            </button>
             <div
               className="account-button-container"
               onClick={toggleAccountBoxVisibility}
@@ -45,11 +42,14 @@ const Navbar = () => {
               <button onClick={toggleAccountBoxVisibility} className='account-box-close'>
                 <FontAwesomeIcon icon={faX} />
               </button>
+              <h2>Account Information</h2>
               <div className="account-box-text">
-                <h2>Account Information</h2>
                 <p>Email: {authUser.email}</p>
                 <p>Display Name: {authUser.displayName}</p>
               </div>
+              <button className="bubble" onClick={handleSignOut}>
+                  Sign Out <FontAwesomeIcon icon={faLeftFromBracket} />
+                </button>
             </div>
           </div>
         )}

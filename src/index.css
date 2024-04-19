@@ -122,10 +122,10 @@
   background-color: white;
   border: 1px solid #ccc;
   border-radius: 4px;
-  padding: 8px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   z-index: 1;
-  width: 500px;
+  padding: 20px 50px;
+  max-width: 600px;
   text-align: center;
 }
 
