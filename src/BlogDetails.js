@@ -38,13 +38,6 @@ const BlogDetails = () => {
     };
 
     createBlog();
-
-		fetch('https://blogger-api-livid.vercel.app/blogs/' + id, {
-			method: 'DELETE'
-		}).then(() => {
-			console.log('Blog deleted');
-			navigate('/');
-		});
 	};
 
 	return (
