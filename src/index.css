@@ -196,6 +196,7 @@
 	border-radius: 8px;
 	cursor: pointer;
 	transition: color 0.3s ease;
+  text-align: left;
 }
 
 .back-button:hover {
@@ -236,7 +237,6 @@
 .create {
 	max-width: 400px;
 	margin: 0 auto;
-	text-align: center;
 }
 .create label {
 	text-align: left;
@@ -246,6 +246,7 @@
 	font-size: 25px;
 	color: #ff7f3b;
 	margin-bottom: 30px;
+  text-align: center;
 }
 .create input, .create textarea, .create select {
 	width: 100%;

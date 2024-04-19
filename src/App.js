@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Create from './Create';
 import BlogDetails from './BlogDetails';
 import NotFound from './NotFound';
+import Edit from './Edit';
 import { UserProvider } from './UserContext';
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
             <Routes>
               <Route exact path="/" element={<Home />} />
               <Route exact path="/create" element={<Create />} />
+              <Route path="/blogs/edit/:id" element={<Edit />} />
               <Route path="/blogs/:id" element={<BlogDetails />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
