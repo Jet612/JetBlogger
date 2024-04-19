@@ -1,5 +1,5 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
-import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
+import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';  
 
 // Create a context
 const UserContext = createContext();
@@ -30,6 +30,7 @@ export const UserProvider = ({ children }) => {
       // Reset authUser and user state
       setAuthUser(null);
       setUser(null);
+      // Redirect to home page
     } catch (error) {
       console.error('Error signing out:', error);
     }

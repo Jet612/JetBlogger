@@ -2,12 +2,14 @@ import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUpload } from '@awesome.me/kit-a2ceb3a490/icons/classic/solid';
 import { useNavigate } from 'react-router-dom';
+import { useUserContext } from './UserContext';
 
 const Create = () => {
 	const [title, setTitle] = useState('');
 	const [body, setBody] = useState('');
 	const [author, setAuthor] = useState('');
 	const [isPending, setIsPending] = useState(false);
+  const { authUser } = useUserContext();
 	const navigate = useNavigate();
 
 	const handleSubmit = (e) => {
@@ -25,6 +27,10 @@ const Create = () => {
 			navigate('/');
 		});
 	};
+
+  if (!authUser) {
+    navigate('/');
+  }
 
 	return (
 		<div className="create">

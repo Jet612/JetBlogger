@@ -13,6 +13,11 @@ const Navbar = () => {
     setIsAccountBoxVisible((prevVisibility) => !prevVisibility);
   };
 
+  const onSignOut = () => {
+    handleSignOut();
+    setIsAccountBoxVisible(false);
+  }
+
   return (
     <nav className="navbar">
       <Link to="/" className="logo">
@@ -36,7 +41,7 @@ const Navbar = () => {
             </div>
           </>
         )}
-        {isAccountBoxVisible && (
+        {isAccountBoxVisible && authUser && (
           <div className="account-box-container">
             <div className="account-box">
               <button onClick={toggleAccountBoxVisibility} className='account-box-close'>
@@ -47,7 +52,7 @@ const Navbar = () => {
                 <p>Email: {authUser.email}</p>
                 <p>Display Name: {authUser.displayName}</p>
               </div>
-              <button className="bubble" onClick={handleSignOut}>
+              <button className="bubble" onClick={onSignOut}>
                   Sign Out <FontAwesomeIcon icon={faLeftFromBracket} />
                 </button>
             </div>
