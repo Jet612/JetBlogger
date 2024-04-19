@@ -2,6 +2,8 @@ import { getAuth, signInWithPopup } from "firebase/auth";
 import { provider } from "./firebase";
 import { useUserContext } from './UserContext';
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faGoogle } from '@awesome.me/kit-a2ceb3a490/icons/classic/brands'
 
 const GoogleLogin = () => {
     const auth = getAuth();
@@ -20,7 +22,7 @@ const GoogleLogin = () => {
 
     return (
         <button onClick={handleGoogleLogin} className="bubble">
-            Login
+            <FontAwesomeIcon icon={faGoogle} /> Login
         </button>
     );
 };

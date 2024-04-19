@@ -1,11 +1,17 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlus } from '@awesome.me/kit-a2ceb3a490/icons/classic/solid'
+import { faPlus, faLeftFromBracket, faCircleUser, faX } from '@awesome.me/kit-a2ceb3a490/icons/classic/solid'
 import { Link } from 'react-router-dom';
 import GoogleLogin from './GoogleLogin';
 import { useUserContext } from './UserContext';
+import { useState } from 'react';
 
 const Navbar = () => {
   const { authUser, handleSignOut } = useUserContext();
+  const [isAccountBoxVisible, setIsAccountBoxVisible] = useState(false);
+
+  const toggleAccountBoxVisibility = () => {
+    setIsAccountBoxVisible((prevVisibility) => !prevVisibility);
+  };
 
   return (
     <nav className="navbar">
@@ -21,9 +27,31 @@ const Navbar = () => {
               New Blog <FontAwesomeIcon icon={faPlus} />
             </Link>
             <button className="bubble" onClick={handleSignOut}>
-              Sign Out
+              Sign Out <FontAwesomeIcon icon={faLeftFromBracket} />
             </button>
+            <div
+              className="account-button-container"
+              onClick={toggleAccountBoxVisibility}
+            >
+              <button className="account-button">
+                <FontAwesomeIcon icon={faCircleUser} />
+              </button>
+            </div>
           </>
+        )}
+        {isAccountBoxVisible && (
+          <div className="account-box-container">
+            <div className="account-box">
+              <button onClick={toggleAccountBoxVisibility} className='account-box-close'>
+                <FontAwesomeIcon icon={faX} />
+              </button>
+              <div className="account-box-text">
+                <h2>Account Information</h2>
+                <p>Email: {authUser.email}</p>
+                <p>Display Name: {authUser.displayName}</p>
+              </div>
+            </div>
+          </div>
         )}
       </div>
     </nav>
