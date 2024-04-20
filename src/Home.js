@@ -6,9 +6,8 @@ import { useUserContext } from './UserContext';
 
 const Home = () => {
   const { authUser } = useUserContext();
-  const { filter: urlFilter } = useParams();
   const [filter, setFilter] = useState(null);
-  const { blogs, isPending, error } = useFetchBlogs(filter || urlFilter);
+  const { blogs, isPending, error } = useFetchBlogs(filter);
 
   const handleFilterAll = () => {
     setFilter(null);
