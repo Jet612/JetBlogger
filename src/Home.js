@@ -1,18 +1,45 @@
+import { useState } from 'react';
+import { useParams } from 'react-router-dom';
 import BlogList from './BlogList';
 import useFetchBlogs from './useFetchBlogs';
-//import { useUserContext } from './UserContext';
+import { useUserContext } from './UserContext';
 
 const Home = () => {
-	const { blogs, isPending, error } = useFetchBlogs();
-  //const { user } = useUserContext();
+  const { authUser } = useUserContext();
+  const { filter: urlFilter } = useParams();
+  const [filter, setFilter] = useState(null);
+  const { blogs, isPending, error } = useFetchBlogs(filter || urlFilter);
 
-	return (
-		<div className="home">
-			{error && <div>{error}</div>}
-			{isPending && <h2>Loading...</h2>}
-			{!isPending && blogs && <BlogList blogs={blogs} />}
-		</div>
-	);
+  const handleFilterAll = () => {
+    setFilter(null);
+  };
+
+  const handleFilterUser = () => {
+    setFilter(authUser.uid);
+  };
+
+  return (
+    <div className="home">
+      {authUser ? (
+        <div className="filter-buttons">
+          <button className={filter ? '' : 'active'} onClick={handleFilterAll}>
+            All Blogs
+          </button>
+          <button className={filter ? 'active' : ''} onClick={handleFilterUser}>
+            Your Blogs
+          </button>
+        </div>
+      ) : (
+        <h2>All Blogs</h2>
+      )}
+      <br></br>
+      {error && <div>{error}</div>}
+      {isPending && <h2>Loading...</h2>}
+      {!isPending && blogs && (
+        <BlogList blogs={blogs} />
+      )}
+    </div>
+  );
 }
 
 export default Home;
