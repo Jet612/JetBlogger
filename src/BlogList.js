@@ -8,7 +8,7 @@ const BlogList = ({ blogs }) => {
 				<Link to={`/blogs/${blog.id}`} className="text-decoration-none" key={blog.id}>
 					<div className='blog-preview'>
 						<h2>{blog.title}</h2>
-						<h5>{blog.body.length >= 100 ? blog.body.substring(0, 100) + '...' : blog.body}</h5>
+						<h5>{blog.body}</h5>
 						<p>- {blog.author}</p>
 					</div>
 				</Link>
