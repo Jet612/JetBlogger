@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
+import './styles/index.css';
 import App from './App';
-import { app, analytics, provider, db } from './firebase'; // eslint-disable-line no-unused-vars
+import { app, analytics, provider, db } from './utils/firebase'; // eslint-disable-line no-unused-vars
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

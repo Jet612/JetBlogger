@@ -1,0 +1,64 @@
+.blog-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.filter-buttons {
+  display: flex;
+}
+
+.filter-buttons button {
+  flex: 1;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  padding: 12px 16px;
+  font-size: 16px;
+  color: #333;
+  transition: background-color 0.3s ease;
+  position: relative; /* To contain the pseudo-element */
+}
+
+.filter-buttons button:hover {
+  background-color: rgb(241, 241, 241);
+}
+
+.filter-buttons button.active::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 60%; /* Adjust the width of the border */
+  height: 4px; /* Adjust the height of the border */
+  background-color: #ff7f3b;
+  border-radius: 20px; /* Adjust the border radius */
+}
+
+/* blog previews / list */
+.blog-preview {
+	padding: 10px 16px;
+	margin: 20px 0;
+	border-bottom: 1px solid #fafafa;
+  color: #333;
+}
+.blog-preview:hover {
+	box-shadow: 1px 3px 5px rgba(0,0,0,0.1);
+}
+.blog-preview h2 {
+	font-size: 20px;
+	color: #ff7f3b;
+	margin-bottom: 8px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.blog-preview h5 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.blog-preview p {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

@@ -2,9 +2,10 @@ import { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUpload } from '@awesome.me/kit-a2ceb3a490/icons/classic/solid';
 import { useNavigate } from 'react-router-dom';
-import { useUserContext } from './UserContext';
+import { useUserContext } from '../utils/UserContext';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
-import { db } from './firebase';
+import { db } from '../utils/firebase';
+import '../styles/create.css';
 
 const Create = () => {
   const navigate = useNavigate();

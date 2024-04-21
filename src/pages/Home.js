@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import BlogList from './BlogList';
-import useFetchBlogs from './useFetchBlogs';
-import { useUserContext } from './UserContext';
+import BlogList from '../components/BlogList';
+import useFetchBlogs from '../utils/useFetchBlogs';
+import { useUserContext } from '../utils/UserContext';
+import '../styles/home.css';
 
 const Home = () => {
   const { authUser } = useUserContext();

@@ -1,0 +1,145 @@
+@import url('https://fonts.googleapis.com/css2?family=Madimi+One&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
+.navbar {
+	padding: 15px 20px;
+	display: flex;
+	align-items: center;
+	max-width: 600px;
+	margin: 0 auto;
+	background: #fff;
+  border-bottom: 1px solid #ddd;
+}
+
+.navbar .logo {
+	max-width: 15%;
+}
+
+.madimi-one-regular {
+	font-family: "Madimi One", sans-serif;
+	font-weight: 400;
+	font-style: normal;
+}
+
+.navbar .logo h1 {
+	color: #ff7f3b;
+}
+
+.navbar .logo img {
+	max-width: 100%;
+	height: auto;
+}
+
+.navbar .links {
+	display: flex;
+	margin-left: auto;
+	transition: background-color 0.3s ease;
+	font-size: 15px;
+}
+
+.navbar .links .bubble {
+	display: inline-flex;
+	align-items: center;
+	color: #fff;
+	background-color: #ff7f3b;
+	border-radius: 8px;
+	padding: 6px 12px;
+	transition: background-color 0.3s ease;
+	font-size: 15px;
+	cursor: pointer;
+	gap: 8px;
+}
+
+.navbar .links .bubble:hover {
+	background-color: #ff6716;
+}
+
+.navbar .links button {
+	margin-left: 16px;
+	text-decoration: none;
+	transition: color 0.2s ease;
+	text-align: center;
+  border: none;
+	cursor: pointer;
+}
+
+.navbar a {
+	text-decoration: none;
+	padding: 6px;
+	transition: color 0.2s ease;
+}
+.navbar a:hover {
+	color: #ff7f3b;
+}
+
+.account-button {
+  color: #ff7f3b;
+  background: none;
+  border-radius: 50px;
+  cursor: pointer;
+  padding: 0;
+}
+
+.account-button svg {
+  width: 30px;
+  height: 30px;
+  fill: #ff7f3b;
+  transition: fill 0.3s ease;
+}
+
+.account-button:hover {
+  color: #ff6716;
+}
+
+.account-box-container {
+  position: absolute;
+  left: 50%; /* Center it horizontally */
+  transform: translateX(-50%); /* Adjust position for centering */
+  height: 100vh;
+  width: 100%;
+  z-index: 9999;
+}
+
+.account-box {
+  position: absolute;
+  top: 5%; /* Position it below the button */
+  left: 50%; /* Center it horizontally */
+  transform: translateX(-50%); /* Adjust position for centering */
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  padding: 20px;
+  max-width: 600px;
+  width: calc(100% - 60px);
+  text-align: center;
+  z-index: 9999;
+}
+
+.account-box h2 {
+  color: #333;
+  margin: 10px;
+}
+
+.account-box-text {
+  margin-bottom: 20px;
+}
+
+.account-box-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 8px 5px;
+  cursor: pointer;
+  background: none;
+}
+
+.account-box-close svg {
+  width: 20px;
+  height: 20px;
+  fill: #333;
+}
+
+.account-box-close:hover {
+  color: #ff7f3b;
+}

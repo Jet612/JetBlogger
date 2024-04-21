@@ -1,11 +1,11 @@
-import Navbar from './Navbar';
-import Home from './Home';
+import Navbar from './components/Navbar';
+import Home from './pages/Home';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Create from './Create';
-import BlogDetails from './BlogDetails';
-import NotFound from './NotFound';
-import Edit from './Edit';
-import { UserProvider } from './UserContext';
+import Create from './pages/Create';
+import BlogDetails from './pages/BlogDetails';
+import NotFound from './pages/NotFound';
+import Edit from './pages/Edit';
+import { UserProvider } from './utils/UserContext';
 
 function App() {
 	return (

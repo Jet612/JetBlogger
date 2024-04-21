@@ -3,9 +3,10 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faTrash, faPenToSquare } from '@awesome.me/kit-a2ceb3a490/icons/classic/solid';
 import { doc, deleteDoc } from 'firebase/firestore';
-import { db } from './firebase';
-import { useUserContext } from './UserContext';
-import useFetchBlog from './useFetchBlog';
+import { db } from '../utils/firebase';
+import { useUserContext } from '../utils/UserContext';
+import useFetchBlog from '../utils/useFetchBlog';
+import '../styles/blogDetails.css';
 
 const BlogDetails = () => {
   const { id } = useParams();
@@ -45,7 +46,7 @@ const BlogDetails = () => {
           <h2>{blog.title}</h2>
           <p>Written by {blog.author}</p>
           <p>{blog.body}</p>
-          {canEdit && (
+          {canEdit && !confirmation && (
             <div>
               <button onClick={() => setConfirmation(true)}>
                 <FontAwesomeIcon icon={faTrash} /> Delete

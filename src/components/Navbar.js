@@ -2,8 +2,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus, faLeftFromBracket, faCircleUser, faX } from '@awesome.me/kit-a2ceb3a490/icons/classic/solid'
 import { Link } from 'react-router-dom';
 import GoogleLogin from './GoogleLogin';
-import { useUserContext } from './UserContext';
+import { useUserContext } from '../utils/UserContext';
 import { useState } from 'react';
+import '../styles/navbar.css';
 
 const Navbar = () => {
   const { authUser, handleSignOut } = useUserContext();

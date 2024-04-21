@@ -3,8 +3,9 @@ import { useNavigate, useParams, Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSave, faArrowLeft } from '@awesome.me/kit-a2ceb3a490/icons/classic/solid';
 import { doc, getDoc, updateDoc, serverTimestamp } from 'firebase/firestore';
-import { db } from './firebase';
-import { useUserContext } from './UserContext';
+import { db } from '../utils/firebase';
+import { useUserContext } from '../utils/UserContext';
+import '../styles/create.css';
 
 
 const Edit = () => {
