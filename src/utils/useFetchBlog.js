@@ -1,37 +1,58 @@
 import { useState, useEffect } from 'react';
-import { doc, getDoc } from 'firebase/firestore';
-import { db } from './firebase';
+import { doc, getDoc, collection, orderBy, query, onSnapshot } from 'firebase/firestore';
+import { db } from './firebase'; // Assuming you have your Firebase config in 'firebase.js'
 
-const useFetchBlogById = (blogId) => {
+const useFetchBlog = (blogId) => {
   const [blog, setBlog] = useState(null);
+  const [comments, setComments] = useState([]);
   const [isPending, setIsPending] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchBlog = async () => {
+    const fetchBlogAndComments = async () => {
       setIsPending(true);
-      try {
-        const blogRef = doc(db, 'blogs', blogId);
-        const docSnap = await getDoc(blogRef);
+      setError(null); // Reset error on new fetch attempt
 
-        if (docSnap.exists()) {
-          setBlog({ id: docSnap.id, ...docSnap.data() });
-        } else {
-          setError(new Error('Blog not found'));
-        }
-        setError(null);
-      } catch (err) {
-        console.error("Error fetching blog: ", err);
-        setError(err);
-      } finally {
+      try {
+        // Fetch Blog Document
+        const blogRef = doc(db, 'blogs', blogId);
+        const blogSnap = await getDoc(blogRef);
+
+        if (!blogSnap.exists()) {
+          throw new Error('Blog not found'); 
+        } 
+
+        // Fetch Comments with Real-Time Updates
+        const commentsRef = collection(db, 'blogs', blogId, 'comments');
+        const q = query(commentsRef, orderBy('timestamp')); // Add ordering if desired
+
+        const unsub = onSnapshot(q, (querySnapshot) => {
+          const fetchedComments = querySnapshot.docs.map(doc => ({
+            id: doc.id,
+            ...doc.data()
+          }));
+          setComments(fetchedComments);
+        }, (error) => { 
+          console.error('Error fetching comments:', error);
+          setError(error); 
+        });
+
+        // Update States on Successful Fetch
+        setBlog({ id: blogSnap.id, ...blogSnap.data() });
         setIsPending(false);
-      }
+
+        return () => unsub(); // Cleanup function for the real-time listener
+      } catch (err) {
+        console.error('Error fetching blog or comments:', err);
+        setError(err); 
+        setIsPending(false);
+      } 
     };
 
-    fetchBlog();
+    fetchBlogAndComments();
   }, [blogId]);
 
-  return { blog, isPending, error };
+  return { blog, comments, isPending, error }; 
 };
 
-export default useFetchBlogById;
+export default useFetchBlog;

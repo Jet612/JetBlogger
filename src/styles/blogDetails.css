@@ -1,19 +1,19 @@
-.blog-details h2 {
+.blog-details {
+  margin-bottom: 40px;
+}
+
+.blog-details .title {
 	font-size: 30px;
 	color: #ff7f3b;
 	margin-bottom: 10px;
 	margin: 10px 0;
 }
 
-.blog-details p {
-	margin: 10px 0;
+.blog-details .body {
+  margin: 10px 0;
 }
 
-.blog-details div {
-	margin: 20px 0;
-}
-
-.blog-details button {
+.blog-details .edit-button {
 	background: #ff7f3b;
 	color: #fff;
 	border: 0;
@@ -23,12 +23,100 @@
 	font-size: 15px;
 	margin-right: 10px;
 	transition: background 0.3s ease;
+  height: fit-content;
 }
 
-.blog-details button:hover {
+.blog-details .edit-button:hover {
 	background: #ff6716;
 }
 
 article p {
   word-wrap: break-word;
+}
+
+.comments {
+  margin: 40px 0;
+}
+
+.comments .header {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.comments .comment { 
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #f0f0f0;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional subtle shadow */
+  position: relative; /* Make the comment container relative */
+}
+
+.delete-comment-button {
+  color: #333;
+  background: none; /* Remove default button background */
+  border: none;     /* Remove default button border */
+  padding: 5px;     /* Add a bit of padding */
+  cursor: pointer;
+  position: absolute; /* Position absolutely within the comment */
+  top: 5px;
+  right: 8px;        /* Position form the right */
+  transition: color 0.2s ease;
+}
+
+.delete-comment-button svg {
+  width: 18px;
+  height: 18px;
+}
+
+.delete-comment-button:hover {
+  color: #ff7f3b;
+}
+
+.comments .comment p { 
+  margin-bottom: 5px;
+}
+
+.comments .comment p:last-child { /* Style the author */
+  font-style: italic;
+  color: #666; 
+}
+
+.comments .add-comment {
+  display: flex;
+  gap: 10px; 
+  margin-bottom: 20px;
+  height: fit-content;
+}
+
+.comments .add-comment textarea {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  resize: none; 
+  min-height: 20px;
+  height: fit-content;
+}
+
+.comments .add-comment button {
+  background-color: #ff7f3b;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  height: fit-content;
+}
+
+.comments .add-comment button:hover {
+  background-color: #ff6716; 
+}
+
+.comments .no-comments {
+  text-align: center;
+  font-size: 18px;
 }

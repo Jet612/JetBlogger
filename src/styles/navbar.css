@@ -84,6 +84,7 @@
   height: 30px;
   fill: #ff7f3b;
   transition: fill 0.3s ease;
+  transform: translateY(2px);
 }
 
 .account-button:hover {

@@ -12,7 +12,6 @@ const Create = () => {
   const { authUser } = useUserContext();
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
-  const [author, setAuthor] = useState(authUser ? authUser.displayName : '');
   const [isPending, setIsPending] = useState(false);
 
   // Redirect to home page only if `authUser` is null
@@ -23,19 +22,21 @@ const Create = () => {
   }, [authUser, navigate]);
 
   const handleSubmit = async (e) => {
-      e.preventDefault();
-      setIsPending(true);
-
-      await addDoc(collection(db, 'blogs'), {
-          title: title,
-          body: body,
-          author: author,
-          authorId: authUser.uid,
-          timestamp: serverTimestamp()
-      });
-
-      setIsPending(false);
-      navigate('/');
+    e.preventDefault();
+    setIsPending(true);
+  
+    const docRef = await addDoc(collection(db, 'blogs'), {
+      title: title,
+      body: body,
+      authorId: authUser.uid,
+      timestamp: serverTimestamp()
+    });
+  
+    // Add an empty 'comments' subcollection to the newly created blog document
+    await collection(docRef, 'comments').add({}); 
+  
+    setIsPending(false);
+    navigate('/');
   };
 
   // If `authUser` is null, return null and let useEffect handle the redirect
@@ -60,13 +61,6 @@ const Create = () => {
                   required
                   value={body}
                   onChange={(e) => setBody(e.target.value)}
-              />
-              <label>Blog author:</label>
-              <input
-                  type="text"
-                  required
-                  value={author}
-                  onChange={(e) => setAuthor(e.target.value)}
               />
               {!isPending && (
                   <button type="submit">
