@@ -95,7 +95,7 @@
   position: absolute;
   left: 50%; /* Center it horizontally */
   transform: translateX(-50%); /* Adjust position for centering */
-  height: 100vh;
+  min-height: 84vh;
   width: 100%;
   z-index: 9999;
 }

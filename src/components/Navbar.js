@@ -5,6 +5,7 @@ import GoogleLogin from './GoogleLogin';
 import { useUserContext } from '../utils/UserContext';
 import { useState } from 'react';
 import '../styles/navbar.css';
+import DisplayUsername from './DisplayUsername';
 
 const Navbar = () => {
   const { authUser, handleSignOut } = useUserContext();
@@ -51,7 +52,7 @@ const Navbar = () => {
               <h2>Account Information</h2>
               <div className="account-box-text">
                 <p>Email: {authUser.email}</p>
-                <p>Display Name: {authUser.displayName}</p>
+                <DisplayUsername userId={authUser.uid} prefix="Display Name: " />
               </div>
               <button className="bubble" onClick={onSignOut}>
                   Sign Out <FontAwesomeIcon icon={faLeftFromBracket} />

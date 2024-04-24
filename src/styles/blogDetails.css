@@ -98,7 +98,7 @@ article p {
   border-radius: 8px;
   resize: none; 
   min-height: 20px;
-  height: fit-content;
+  max-height: 200px;
 }
 
 .comments .add-comment button {
@@ -114,6 +114,12 @@ article p {
 
 .comments .add-comment button:hover {
   background-color: #ff6716; 
+}
+
+.comments .add-comment button:disabled {
+  background-color: #ccc;
+  color: #666; /* Adjust text color to be less prominent */
+  cursor: not-allowed;
 }
 
 .comments .no-comments {

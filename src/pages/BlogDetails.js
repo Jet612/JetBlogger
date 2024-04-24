@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faTrash, faPenToSquare } from '@awesome.me/kit-a2ceb3a490/icons/classic/solid';
@@ -7,7 +7,7 @@ import { db } from '../utils/firebase';
 import { useUserContext } from '../utils/UserContext';
 import useFetchBlog from '../utils/useFetchBlog';
 import '../styles/blogDetails.css';
-import WrittenBy from '../components/WrittenBy';
+import DisplayUsername from '../components/DisplayUsername';
 
 const BlogDetails = () => {
   const { id } = useParams();
@@ -18,9 +18,17 @@ const BlogDetails = () => {
   const [confirmation, setConfirmation] = useState(false);
   const [isPendingDelete, setIsPendingDelete] = useState(false);
   const [comment, setComment] = useState('');
+  const textareaRef = useRef(null);
 
   // Determine if the authenticated user can delete the blog post
   const canEdit = blog && authUser && blog.authorId === authUser.uid;
+
+  useEffect(() => {
+    if (textareaRef.current) {
+      textareaRef.current.style.height = '20px'; // Reset height to auto initially
+      textareaRef.current.style.height = `${textareaRef.current.scrollHeight - 20}px`; // Set height to fit content
+    }
+  }, [comment]); // Re-run the effect whenever the comment state changes
 
   const handleDelete = async () => {
     setIsPendingDelete(true);
@@ -74,7 +82,7 @@ const BlogDetails = () => {
       {blog && (
         <article>
           <h2 className='title'>{blog.title}</h2>
-          <WrittenBy userId={blog.authorId} prefix="Written by " />
+          <DisplayUsername userId={blog.authorId} prefix="Written by " />
           <p className='body'>{blog.body}</p>
           {canEdit && !confirmation && (
             <div>
@@ -106,18 +114,20 @@ const BlogDetails = () => {
         {authUser && ( // Check if user is authenticated
           <form className='add-comment' onSubmit={handleSubmit}>
             <textarea 
+              ref={textareaRef}
               placeholder="Add a comment"
               value={comment}
               onChange={(e) => setComment(e.target.value)}
+              maxLength={500}
             ></textarea>
-            <button type="submit">Comment</button>
+            <button type="submit" disabled={!comment.trim()} className={!comment.trim() ? 'disabled' : ''}>Comment</button>
           </form>
         )}
         {comments && comments.length > 0 ? ( 
           comments.map((comment) => (
             <div key={comment.id} className="comment">
               <p>{comment.text}</p>
-              <WrittenBy userId={comment.authorId} prefix="By " />
+              <DisplayUsername userId={comment.authorId} prefix="By " />
               {/* Add delete button conditionally */}
               {authUser && authUser.uid === comment.authorId && (
                 <button className="delete-comment-button" onClick={() => handleDeleteComment(comment.id)}>

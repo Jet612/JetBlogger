@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import WrittenBy from "./WrittenBy";
+import DisplayUsername from "./DisplayUsername";
 
 const BlogList = ({ blogs }) => {
   return ( 
@@ -9,7 +9,7 @@ const BlogList = ({ blogs }) => {
           <div className='blog-preview'>
             <h2>{blog.title}</h2>
             <h5>{blog.body}</h5>
-            <WrittenBy userId={blog.authorId} prefix="- " />
+            <DisplayUsername userId={blog.authorId} prefix="- " />
           </div>
         </Link>
       ))}
