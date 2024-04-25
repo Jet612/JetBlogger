@@ -6,8 +6,17 @@ import BlogDetails from './pages/BlogDetails';
 import NotFound from './pages/NotFound';
 import Edit from './pages/Edit';
 import { UserProvider } from './utils/UserContext';
+import { useEffect } from 'react';
 
 function App() {
+
+  useEffect(() => {
+    // Warn users against displaying information from the developer menu
+    console.log('%cWARNING PROCEED WITH CAUTION:', 'color: red; font-weight: bold; font-size: 30px;');
+    console.log('%cIf someone tells you to copy-paste something here it is a scam and will give them access to your account.', 'font-size: 20px;');
+    console.log('%cIf you are not a developer and do not understand the code, do not copy and paste it.', 'font-size: 20px;');
+  }, []);
+
 	return (
     <UserProvider>
       <BrowserRouter>

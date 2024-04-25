@@ -8,6 +8,8 @@ import { useUserContext } from '../utils/UserContext';
 import useFetchBlog from '../utils/useFetchBlog';
 import '../styles/blogDetails.css';
 import DisplayUsername from '../components/DisplayUsername';
+import showdown from 'showdown'; // Import showdown
+import DOMPurify from 'dompurify';
 
 const BlogDetails = () => {
   const { id } = useParams();
@@ -66,10 +68,19 @@ const BlogDetails = () => {
     try {
       const commentRef = doc(db, 'blogs', id, 'comments', commentId);
       await deleteDoc(commentRef);
-      console.log('Comment deleted'); 
     } catch (error) {
       console.error('Error deleting comment:', error);
     }
+  };
+
+  // Function to convert markdown to HTML
+  const markdownToHTML = (markdown) => {
+    const converter = new showdown.Converter();
+    converter.setOption("strikethrough", true);
+    converter.setOption("tables", true);
+    converter.setOption("tasklists", true);
+    converter.setOption("ghCodeBlocks", true);
+    return converter.makeHtml(markdown);
   };
 
   return (
@@ -83,7 +94,8 @@ const BlogDetails = () => {
         <article>
           <h2 className='title'>{blog.title}</h2>
           <DisplayUsername userId={blog.authorId} prefix="Written by " />
-          <p className='body'>{blog.body}</p>
+          {/* Render the HTML safely */}
+          <div className='body' dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(markdownToHTML(blog.body)) }} />
           {canEdit && !confirmation && (
             <div>
               <button onClick={() => setConfirmation(true)} className="edit-button">
@@ -103,8 +115,8 @@ const BlogDetails = () => {
           ) : (
             <>
               <p>Are you sure you want to delete this blog post?</p>
-              <button onClick={handleDelete}>Yes, delete</button>
-              <button onClick={() => setConfirmation(false)}>No, cancel</button>
+              <button onClick={handleDelete} className="edit-button">Yes, delete</button>
+              <button onClick={() => setConfirmation(false)} className="edit-button">No, cancel</button>
             </>
           )}
         </div>

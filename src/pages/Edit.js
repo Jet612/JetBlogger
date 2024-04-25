@@ -85,7 +85,7 @@ const Edit = () => {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
-          <label>Blog body:</label>
+          <label>Blog body (supports markdown):</label>
           <textarea
             required
             value={body}
