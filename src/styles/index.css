@@ -28,7 +28,6 @@
 	min-height: calc(100vh - 114px);
 	padding: 20px;
 	background: var(--background-color);
-  
 }
 
 .text-decoration-none {
@@ -50,4 +49,9 @@
 
 .back-button:hover {
 	color: var(--primary-color);
+}
+
+.timestamp {
+  font-style: italic;
+  color: var(--secondary-color);
 }

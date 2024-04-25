@@ -5,15 +5,13 @@ const BlogList = ({ blogs }) => {
   return ( 
     <div className="blog-list">
       {blogs.map((blog) => (
-        <div className="blog-preview-container">
-          <Link to={`/blogs/${blog.id}`} className="text-decoration-none" key={blog.id}>
-            <div className='blog-preview'>
-              <h2>{blog.title}</h2>
-              <h5>{blog.body}</h5>
-              <DisplayUsername userId={blog.authorId} prefix="- " />
-            </div>
-          </Link>
-        </div>
+        <Link to={`/blogs/${blog.id}`} className="text-decoration-none" key={blog.id}>
+          <div className='blog-preview'>
+            <h2>{blog.title}</h2>
+            <h5>{blog.body}</h5>
+            <DisplayUsername userId={blog.authorId} prefix="- " timestamp={blog.timestamp} />
+          </div>
+        </Link>
       ))}
     </div>  
   );

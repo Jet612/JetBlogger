@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUpload } from '@awesome.me/kit-a2ceb3a490/icons/classic/solid';
 import { useNavigate } from 'react-router-dom';
@@ -14,26 +14,29 @@ const Create = () => {
   const [body, setBody] = useState('');
   const [isPending, setIsPending] = useState(false);
 
+  const textareaRef = useRef(null);
+
   // Redirect to home page only if `authUser` is null
   useEffect(() => {
       if (!authUser) {
           navigate('/');
       }
-  }, [authUser, navigate]);
+      if (textareaRef.current) {
+        textareaRef.current.style.height = '150px'; // Reset height to auto initially
+        textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`; // Set height to fit content
+      }
+  }, [authUser, navigate, body]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsPending(true);
   
-    const docRef = await addDoc(collection(db, 'blogs'), {
+    await addDoc(collection(db, 'blogs'), {
       title: title,
       body: body,
       authorId: authUser.uid,
       timestamp: serverTimestamp()
     });
-  
-    // Add an empty 'comments' subcollection to the newly created blog document
-    await collection(docRef, 'comments').add({}); 
   
     setIsPending(false);
     navigate('/');
@@ -61,6 +64,7 @@ const Create = () => {
                   required
                   value={body}
                   onChange={(e) => setBody(e.target.value)}
+                  ref={textareaRef}
               />
               {!isPending && (
                   <button type="submit">

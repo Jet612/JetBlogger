@@ -35,14 +35,9 @@
   border-radius: 20px; /* Adjust the border radius */
 }
 
-/* blog previews / list */
-.blog-preview-container {
-  padding: 10px 0;
-}
-
 .blog-preview {
-	padding: 20px 16px;
-	margin: 0;
+	padding: 10px 16px;
+	margin: 20px 0;
   color: var(--text);
 }
 .blog-preview:hover {
@@ -52,13 +47,12 @@
 	font-size: 20px;
 	color: var(--primary-color);
 	margin-bottom: 8px;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .blog-preview h5 {
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap; /* Prevent text wrapping */
 }
 
 .blog-preview p {

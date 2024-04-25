@@ -19,6 +19,8 @@
 	border: 1px solid #ddd;
 	box-sizing: border-box;
 	display: block;
+  resize: none;
+  overflow: hidden;
 }
 .create button {
 	background: var(--primary-color);

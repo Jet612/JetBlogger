@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate, useParams, Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSave, faArrowLeft } from '@awesome.me/kit-a2ceb3a490/icons/classic/solid';
@@ -17,8 +17,9 @@ const Edit = () => {
   const [blog, setBlog] = useState(null);
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
-  const [author, setAuthor] = useState('');
   const [isPending, setIsPending] = useState(false);
+  const textareaRef = useRef(null);
+
 
   // Fetch the existing blog post details based on the ID
   useEffect(() => {
@@ -30,14 +31,19 @@ const Edit = () => {
         setBlog(blogData);
         setTitle(blogData.title);
         setBody(blogData.body);
-        setAuthor(blogData.author);
       } else {
         // If the blog post does not exist, navigate back to home
         navigate('/');
       }
     };
-    fetchBlog();
-  }, [id, navigate]);
+    if (!blog) {
+      fetchBlog();
+    }
+    if (textareaRef.current) {
+      textareaRef.current.style.height = '150px'; // Reset height to auto initially
+      textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`; // Set height to fit content
+    }
+  }, [id, navigate, body, blog]);
 
   // Redirect if the user is not authorized to edit the blog post
   useEffect(() => {
@@ -56,7 +62,6 @@ const Edit = () => {
     await updateDoc(docRef, {
       title: title,
       body: body,
-      author: author,
       updatedAt: serverTimestamp(), // Update the timestamp field
     });
 
@@ -85,13 +90,7 @@ const Edit = () => {
             required
             value={body}
             onChange={(e) => setBody(e.target.value)}
-          />
-          <label>Blog author:</label>
-          <input
-            type="text"
-            required
-            value={author}
-            onChange={(e) => setAuthor(e.target.value)}
+            ref={textareaRef}
           />
           {!isPending && (
             <button type="submit">
