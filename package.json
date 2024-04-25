@@ -6,6 +6,8 @@
     "@awesome.me/kit-a2ceb3a490": "^1.0.7",
     "@fortawesome/fontawesome-svg-core": "^6.5.2",
     "@fortawesome/react-fontawesome": "^0.2.0",
+    "@sentry/cli": "^2.31.0",
+    "@sentry/react": "^7.112.2",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -23,9 +25,10 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build && npm run sentry:sourcemaps",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "sentry:sourcemaps": "sentry-cli sourcemaps inject --org jet612 --project jetblogger build && sentry-cli sourcemaps upload --org jet612 --project jetblogger build"
   },
   "eslintConfig": {
     "extends": [
