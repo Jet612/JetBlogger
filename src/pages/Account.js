@@ -11,31 +11,31 @@ const Account = () => {
   const [displayName, setDisplayName] = useState('');
 
   useEffect(() => {
-    const fetchData = async () => {
-      if (!authUser) {
-        navigate('/');
-      } else {
+    if (!authUser) {
+      navigate('/');
+    } else {
+      const fetchData = async () => {
         try {
           const userRef = doc(db, 'users', authUser.uid);
           const userSnap = await getDoc(userRef);
-
+  
           if (!userSnap.exists()) {
             throw new Error('User not found');
           }
-
+  
           setDisplayName(userSnap.data().displayName);
         } catch (error) {
           console.error('Error fetching user data:', error);
           // Handle error as needed
         }
-      }
-    };
-
-    fetchData();
+      };
+  
+      fetchData();
+    }
   }, [authUser, navigate]);
 
   return (
-    <div className="account">
+    <div className="account-info">
       <h2>Account Information</h2>
       <form>
         <label>Email:</label>

@@ -5,6 +5,7 @@ import Create from './pages/Create';
 import BlogDetails from './pages/BlogDetails';
 import NotFound from './pages/NotFound';
 import Edit from './pages/Edit';
+import Account from './pages/Account';
 import { UserProvider } from './utils/UserContext';
 import { useEffect } from 'react';
 
@@ -25,6 +26,7 @@ function App() {
           <div className="content">
             <Routes>
               <Route exact path="/" element={<Home />} />
+              <Route exact path="/account" element={<Account />} />
               <Route exact path="/create" element={<Create />} />
               <Route path="/blogs/edit/:id" element={<Edit />} />
               <Route path="/blogs/:id" element={<BlogDetails />} />
