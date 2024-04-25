@@ -84,10 +84,11 @@ const BlogDetails = () => {
   };
 
   return (
+    <>
+    <Link to="/" className="text-decoration-none back-button">
+      <FontAwesomeIcon icon={faArrowLeft} /> Back
+    </Link>
     <div className="blog-details">
-      <Link to="/" className="text-decoration-none back-button">
-        <FontAwesomeIcon icon={faArrowLeft} /> Back
-      </Link>
       {isPending && <div>Loading...</div>}
       {error && <div>Error: {error}</div>}
       {blog && (
@@ -155,6 +156,7 @@ const BlogDetails = () => {
         )}
       </div>
     </div>
+    </>
   );
 };
 

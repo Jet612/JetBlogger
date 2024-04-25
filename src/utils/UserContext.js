@@ -9,10 +9,12 @@ export const UserProvider = ({ children }) => {
   const auth = getAuth();
   const [authUser, setAuthUser] = useState(auth.currentUser);
   const [user, setUser] = useState(null);
+  const [isReady, setIsReady] = useState(false);
 
   // Listen for authentication changes
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setIsReady(true);
       setAuthUser(user);
       setUser(user);
     });
@@ -37,7 +39,7 @@ export const UserProvider = ({ children }) => {
   };
 
   return (
-    <UserContext.Provider value={{ user, setUser, authUser, setAuthUser, handleSignOut }}>
+    <UserContext.Provider value={{ user, setUser, authUser, setAuthUser, handleSignOut, isReady }}>
       {children}
     </UserContext.Provider>
   );

@@ -71,10 +71,11 @@ const Edit = () => {
 
   // Render the form for editing the blog post
   return (
+    <>
+    <Link to={"/blogs/" + id} className="text-decoration-none back-button">
+      <FontAwesomeIcon icon={faArrowLeft} /> Back
+    </Link>
     <div className="create">
-      <Link to={"/blogs/" + id} className="text-decoration-none back-button">
-        <FontAwesomeIcon icon={faArrowLeft} /> Back
-      </Link>
       <h2>Edit Blog Post</h2>
       {blog && authUser && blog.authorId === authUser.uid ? (
         <form onSubmit={handleSubmit}>
@@ -104,6 +105,7 @@ const Edit = () => {
         null
       )}
     </div>
+    </>
   );
 };
 
