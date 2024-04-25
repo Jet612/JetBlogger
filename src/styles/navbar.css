@@ -6,7 +6,7 @@
 	align-items: center;
 	max-width: 600px;
 	margin: 0 auto;
-	background: #fff;
+	background: var(--background-color);
   border-bottom: 1px solid #ddd;
 }
 
@@ -21,7 +21,7 @@
 }
 
 .navbar .logo h1 {
-	color: #ff7f3b;
+	color: var(--primary-color);
 }
 
 .navbar .logo img {
@@ -40,7 +40,7 @@
 	display: inline-flex;
 	align-items: center;
 	color: #fff;
-	background-color: #ff7f3b;
+	background-color: var(--primary-color);
 	border-radius: 8px;
 	padding: 6px 12px;
 	transition: background-color 0.3s ease;
@@ -50,7 +50,7 @@
 }
 
 .navbar .links .bubble:hover {
-	background-color: #ff6716;
+	background-color: var(--primary-dark);
 }
 
 .navbar .links button {
@@ -68,11 +68,11 @@
 	transition: color 0.2s ease;
 }
 .navbar a:hover {
-	color: #ff7f3b;
+	color: var(--primary-color);
 }
 
 .account-button {
-  color: #ff7f3b;
+  color: var(--primary-color);
   background: none;
   border-radius: 50px;
   cursor: pointer;
@@ -82,13 +82,13 @@
 .account-button svg {
   width: 30px;
   height: 30px;
-  fill: #ff7f3b;
+  fill: var(--primary-color);
   transition: fill 0.3s ease;
   transform: translateY(2px);
 }
 
 .account-button:hover {
-  color: #ff6716;
+  color: var(--primary-dark);
 }
 
 .account-box-container {
@@ -96,7 +96,7 @@
   left: 50%; /* Center it horizontally */
   transform: translateX(-50%); /* Adjust position for centering */
   min-height: 84vh;
-  width: 100%;
+  width: 100vw;
   z-index: 9999;
 }
 
@@ -118,7 +118,7 @@
 }
 
 .account-box h2 {
-  color: #333;
+  color: var(--text);
   margin: 10px;
 }
 
@@ -138,9 +138,9 @@
 .account-box-close svg {
   width: 20px;
   height: 20px;
-  fill: #333;
+  fill: var(--text);
 }
 
 .account-box-close:hover {
-  color: #ff7f3b;
+  color: var(--primary-color);
 }

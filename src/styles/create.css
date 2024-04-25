@@ -8,7 +8,7 @@
 }
 .create h2 {
 	font-size: 25px;
-	color: #ff7f3b;
+	color: var(--primary-color);
 	margin-bottom: 30px;
   text-align: center;
 }
@@ -21,7 +21,7 @@
 	display: block;
 }
 .create button {
-	background: #ff7f3b;
+	background: var(--primary-color);
 	color: #fff;
 	border: 0;
 	padding: 10px;
@@ -33,5 +33,5 @@
 }
 
 .create button:hover {
-	background: #ff6716;
+	background: var(--primary-dark);
 }

@@ -127,7 +127,9 @@ const BlogDetails = () => {
           comments.map((comment) => (
             <div key={comment.id} className="comment">
               <p>{comment.text}</p>
-              <DisplayUsername userId={comment.authorId} prefix="By " />
+              <div className="author"> 
+                <DisplayUsername userId={comment.authorId} prefix="- " />
+              </div>
               {/* Add delete button conditionally */}
               {authUser && authUser.uid === comment.authorId && (
                 <button className="delete-comment-button" onClick={() => handleDeleteComment(comment.id)}>

@@ -4,7 +4,7 @@
 
 .blog-details .title {
 	font-size: 30px;
-	color: #ff7f3b;
+	color: var(--primary-color);
 	margin-bottom: 10px;
 	margin: 10px 0;
 }
@@ -14,7 +14,7 @@
 }
 
 .blog-details .edit-button {
-	background: #ff7f3b;
+	background: var(--primary-color);
 	color: #fff;
 	border: 0;
 	padding: 8px 12px;
@@ -27,7 +27,7 @@
 }
 
 .blog-details .edit-button:hover {
-	background: #ff6716;
+	background: var(--primary-dark);
 }
 
 article p {
@@ -55,7 +55,7 @@ article p {
 }
 
 .delete-comment-button {
-  color: #333;
+  color: var(--text);
   background: none; /* Remove default button background */
   border: none;     /* Remove default button border */
   padding: 5px;     /* Add a bit of padding */
@@ -72,16 +72,17 @@ article p {
 }
 
 .delete-comment-button:hover {
-  color: #ff7f3b;
+  color: var(--primary-color);
 }
 
 .comments .comment p { 
   margin-bottom: 5px;
 }
 
-.comments .comment p:last-child { /* Style the author */
+.comments .comment .author p { /* Style the author */
   font-style: italic;
-  color: #666; 
+  color: var(--secondary-color);
+  font-size: 14px;
 }
 
 .comments .add-comment {
@@ -102,7 +103,7 @@ article p {
 }
 
 .comments .add-comment button {
-  background-color: #ff7f3b;
+  background-color: var(--primary-color);
   color: white;
   border: none;
   padding: 10px 20px;
@@ -113,12 +114,12 @@ article p {
 }
 
 .comments .add-comment button:hover {
-  background-color: #ff6716; 
+  background-color: var(--primary-dark); 
 }
 
 .comments .add-comment button:disabled {
   background-color: #ccc;
-  color: #666; /* Adjust text color to be less prominent */
+  color: var(--secondary-color); /* Adjust text color to be less prominent */
   cursor: not-allowed;
 }
 

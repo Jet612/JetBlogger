@@ -14,7 +14,7 @@
   cursor: pointer;
   padding: 12px 16px;
   font-size: 16px;
-  color: #333;
+  color: var(--text);
   transition: background-color 0.3s ease;
   position: relative; /* To contain the pseudo-element */
 }
@@ -31,23 +31,26 @@
   transform: translateX(-50%);
   width: 60%; /* Adjust the width of the border */
   height: 4px; /* Adjust the height of the border */
-  background-color: #ff7f3b;
+  background-color: var(--primary-color);
   border-radius: 20px; /* Adjust the border radius */
 }
 
 /* blog previews / list */
+.blog-preview-container {
+  padding: 10px 0;
+}
+
 .blog-preview {
-	padding: 10px 16px;
-	margin: 20px 0;
-	border-bottom: 1px solid #fafafa;
-  color: #333;
+	padding: 20px 16px;
+	margin: 0;
+  color: var(--text);
 }
 .blog-preview:hover {
 	box-shadow: 1px 3px 5px rgba(0,0,0,0.1);
 }
 .blog-preview h2 {
 	font-size: 20px;
-	color: #ff7f3b;
+	color: var(--primary-color);
 	margin-bottom: 8px;
   overflow: hidden;
   text-overflow: ellipsis;
