@@ -6,11 +6,11 @@ import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import { db } from '../utils/firebase';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowLeft, faFloppyDisk } from '@awesome.me/kit-a2ceb3a490/icons/classic/solid';
+import { faArrowLeft, faFloppyDisk, faLeftFromBracket } from '@awesome.me/kit-a2ceb3a490/icons/classic/solid';
 
 const Account = () => {
   const navigate = useNavigate();
-  const { authUser, isReady } = useUserContext();
+  const { authUser, isReady, handleSignOut } = useUserContext();
   const [displayName, setDisplayName] = useState('');
   const [originalDisplayName, setOriginalDisplayName] = useState('');
   const [isPending, setIsPending] = useState(false);
@@ -57,6 +57,11 @@ const Account = () => {
     }
   }
 
+  const onSignOut = () => {
+    handleSignOut();
+    navigate('/');
+  }
+
   return (
     <>
     <Link to="/" className="text-decoration-none back-button">
@@ -98,11 +103,14 @@ const Account = () => {
         </div>
         {!isPending ? (
           <button type="submit" className="button" disabled={!isChanged || isPending}>
-          Save Changes <FontAwesomeIcon icon={faFloppyDisk} />
+            Save Changes <FontAwesomeIcon icon={faFloppyDisk} />
         </button>
         ) : (
           <button disabled>Saving...</button>
         )}
+        <button className="bubble" onClick={onSignOut}>
+          Sign Out <FontAwesomeIcon icon={faLeftFromBracket} />
+        </button>
         
       </form>
     </div>
