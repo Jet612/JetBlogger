@@ -16,6 +16,7 @@ const BlogList = ({ blogs }) => {
 
   return ( 
     <div className="blog-list">
+      {blogs.length === 0 && <h2>Could not find any blogs!</h2>}
       {blogs.map((blog) => (
         <Link to={`/blogs/${blog.id}`} className="text-decoration-none" key={blog.id}>
           <div className='blog-preview'>
