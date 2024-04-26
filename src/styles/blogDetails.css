@@ -127,3 +127,10 @@ article p {
   text-align: center;
   font-size: 18px;
 }
+
+@media screen and (max-width: 470px) {
+  .comments .add-comment {
+    display: flex;
+    flex-direction: column;
+  }
+}
