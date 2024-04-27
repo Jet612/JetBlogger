@@ -11,7 +11,8 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <Link to="/" className="logo">
-        <h1 className="madimi-one-regular">JetBlogger</h1>
+        <img src="../logo192.png" alt="JetBlogger" />
+        <h1>JetBlogger</h1>
       </Link>
       <div className="links">
         {!authUser ? (

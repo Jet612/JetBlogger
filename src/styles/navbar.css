@@ -11,9 +11,15 @@
 }
 
 .navbar .logo {
+  display: inline-flex;
+  gap: 8px;
 	max-width: 15%;
   color: var(--primary);
   text-decoration: none;
+}
+
+.navbar .logo img {
+  width: 30px;
 }
 
 .navbar .links {
@@ -72,4 +78,13 @@
 
 .account-button:hover {
   color: var(--hover);
+}
+
+@media screen and (max-width: 400px){
+  .navbar .logo h1 {
+    display: none;
+  }
+  .navbar .logo img {
+    width: 40px;
+  }
 }
