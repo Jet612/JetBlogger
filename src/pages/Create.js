@@ -55,22 +55,26 @@ const Create = () => {
       <FontAwesomeIcon icon={faArrowLeft} /> Back
     </Link>
     <div className="create">
-      <h2>Add a New Blog</h2>
-      <form onSubmit={handleSubmit}>
-        <label>Blog title:</label>
-        <input
-          type="text"
-          required
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        />
-        <label>Blog body (supports markdown):</label>
-        <textarea
-          required
-          value={body}
-          onChange={(e) => setBody(e.target.value)}
-          ref={textareaRef}
-        />
+      <h1>Add a New Blog</h1>
+      <form onSubmit={handleSubmit} className="create-blog">
+        <div className="section">
+          <label>Blog title:</label>
+          <input
+            type="text"
+            required
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
+        </div>
+        <div className="section">
+          <label>Blog body (supports markdown):</label>
+          <textarea
+            required
+            value={body}
+            onChange={(e) => setBody(e.target.value)}
+            ref={textareaRef}
+          />
+        </div>
         {!isPending && (
           <button type="submit">
             Publish Blog <FontAwesomeIcon icon={faUpload} />

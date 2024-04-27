@@ -31,7 +31,6 @@ const Home = () => {
       ) : (
         <h2>All Blogs</h2>
       )}
-      <br></br>
       {error && <div>{error}</div>}
       {isPending && <h2>Loading...</h2>}
       {!isPending && blogs && (

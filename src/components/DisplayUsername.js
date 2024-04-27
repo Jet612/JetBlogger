@@ -39,7 +39,7 @@ const DisplayUsername = ({ userId, prefix, timestamp }) => {
       )}
       {!isPending && user && timestamp && (
         <p>
-          {prefix}{user.displayName} <FontAwesomeIcon icon={faCircle} style={{"maxWidth": "4px", "color": "var(--secondary-color)"}} /> <time className="timestamp" dateTime={timestamp.toDate().toISOString()}>{timeAgo(timestamp.toDate())}</time> 
+          {prefix}{user.displayName} <FontAwesomeIcon icon={faCircle} style={{"maxWidth": "4px", "color": "var(--secondary)"}} /> <time className="timestamp" dateTime={timestamp.toDate().toISOString()}>{timeAgo(timestamp.toDate())}</time> 
         </p>
       )}
     </div>

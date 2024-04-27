@@ -21,7 +21,6 @@ const BlogList = ({ blogs }) => {
         <Link to={`/blogs/${blog.id}`} className="text-decoration-none" key={blog.id}>
           <div className='blog-preview'>
             <h2>{blog.title}</h2>
-            {/* Render the plain text body */}
             <h5>{markdownToPlainText(blog.body)}</h5>
             <DisplayUsername userId={blog.authorId} prefix="- " timestamp={blog.timestamp} />
           </div>

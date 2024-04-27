@@ -5,17 +5,19 @@
 }
 
 :root {
-  --background-color: #fff;
-  --primary-color: #ff7f3b;
-  --primary-dark: #ff6716;
-  --primary-light: #ff9f5b;
-  --primary-lighter: #ffbc8a;
-  --secondary-color: #666;
-  --text: #333;
-
+  --background: #010409;
+  --background-secondary: #0d1117;
+  --text: #fff;
+  --primary: #3068ff;
+  --secondary: #8b949e;
+  --hover: #2149b6;
+  --border: #30363d;
+  --disabled-background: #1d1d1d;
+  --disabled-text: #bbb;
 }
 
 .App {
+  background-color: var(--background-secondary);
 	background-image: url("../background.svg");
 	background-size: cover;
 	background-repeat: repeat-y;
@@ -30,7 +32,7 @@
 	margin: 0 auto;
 	min-height: calc(100vh - 114px);
 	padding: 20px;
-	background: var(--background-color);
+	background: var(--background);
 }
 
 .text-decoration-none {
@@ -42,7 +44,7 @@
 }
 
 .back-button {
-	color: var(--text);
+	color: var(--text-primary);
 	border: none;
 	border-radius: 8px;
 	cursor: pointer;
@@ -51,10 +53,10 @@
 }
 
 .back-button:hover {
-	color: var(--primary-color);
+	color: var(--primary);
 }
 
 .timestamp {
   font-style: italic;
-  color: var(--secondary-color);
+  color: var(--secondary);
 }

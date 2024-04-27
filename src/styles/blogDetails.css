@@ -1,10 +1,14 @@
 .blog-details {
-  margin-bottom: 40px;
+  margin-top: 20px;
+  padding: 10px 20px;
+  background: var(--background-secondary);
+  border: none;
+  border-radius: 8px;
 }
 
 .blog-details .title {
 	font-size: 30px;
-	color: var(--primary-color);
+	color: var(--primary);
 	margin-bottom: 10px;
 	margin: 10px 0;
 }
@@ -14,7 +18,8 @@
 }
 
 .blog-details .edit-button {
-	background: var(--primary-color);
+  margin-top: 15px;
+	background: var(--primary);
 	color: #fff;
 	border: 0;
 	padding: 8px 12px;
@@ -27,7 +32,7 @@
 }
 
 .blog-details .edit-button:hover {
-	background: var(--primary-dark);
+	background: var(--hover);
 }
 
 article p {
@@ -48,14 +53,14 @@ article p {
 .comments .comment { 
   margin-bottom: 10px;
   padding: 10px;
-  border: 1px solid #f0f0f0;
+  border: 1px solid var(--border);
   border-radius: 8px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional subtle shadow */
   position: relative; /* Make the comment container relative */
 }
 
 .delete-comment-button {
-  color: var(--text);
+  color: var(--secondary);
   background: none; /* Remove default button background */
   border: none;     /* Remove default button border */
   padding: 5px;     /* Add a bit of padding */
@@ -72,7 +77,7 @@ article p {
 }
 
 .delete-comment-button:hover {
-  color: var(--primary-color);
+  color: var(--primary);
 }
 
 .comments .comment p { 
@@ -81,7 +86,7 @@ article p {
 
 .comments .comment .author p { /* Style the author */
   font-style: italic;
-  color: var(--secondary-color);
+  color: var(--secondary);
   font-size: 14px;
 }
 
@@ -95,18 +100,25 @@ article p {
 .comments .add-comment textarea {
   flex: 1;
   padding: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--border);
   border-radius: 8px;
   resize: none; 
   min-height: 20px;
   max-height: 200px;
+  background: none;
+  color: var(--text);
+}
+
+.comments .add-comment textarea:focus {
+  outline: none;
+  border: 1px solid var(--primary);
 }
 
 .comments .add-comment button {
-  background-color: var(--primary-color);
+  background-color: var(--primary);
   color: white;
   border: none;
-  padding: 10px 20px;
+  padding: 12px 25px;
   border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.3s ease;
@@ -114,12 +126,12 @@ article p {
 }
 
 .comments .add-comment button:hover {
-  background-color: var(--primary-dark); 
+  background-color: var(--primary); 
 }
 
 .comments .add-comment button:disabled {
-  background-color: #ccc;
-  color: var(--secondary-color); /* Adjust text color to be less prominent */
+  background-color: var(--disabled-background);
+  color: var(--disabled-text); /* Adjust text color to be less prominent */
   cursor: not-allowed;
 }
 

@@ -76,23 +76,27 @@ const Edit = () => {
       <FontAwesomeIcon icon={faArrowLeft} /> Back
     </Link>
     <div className="create">
-      <h2>Edit Blog Post</h2>
+      <h1>Edit Blog Post</h1>
       {blog && authUser && blog.authorId === authUser.uid ? (
-        <form onSubmit={handleSubmit}>
-          <label>Blog title:</label>
-          <input
-            type="text"
-            required
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-          />
-          <label>Blog body (supports markdown):</label>
-          <textarea
-            required
-            value={body}
-            onChange={(e) => setBody(e.target.value)}
-            ref={textareaRef}
-          />
+        <form onSubmit={handleSubmit} className="create-blog">
+          <div className="section">
+            <label>Blog title:</label>
+            <input
+              type="text"
+              required
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+            />
+          </div>
+          <div className="section">
+            <label>Blog body (supports markdown):</label>
+            <textarea
+              required
+              value={body}
+              onChange={(e) => setBody(e.target.value)}
+              ref={textareaRef}
+            />
+          </div>
           {!isPending && (
             <button type="submit">
               Save Changes <FontAwesomeIcon icon={faSave} />

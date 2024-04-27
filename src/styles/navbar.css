@@ -6,27 +6,14 @@
 	align-items: center;
 	max-width: 600px;
 	margin: 0 auto;
-	background: var(--background-color);
-  border-bottom: 1px solid #ddd;
+	background: var(--background);
+  border-bottom: 1px solid var(--secondary);
 }
 
 .navbar .logo {
 	max-width: 15%;
-}
-
-.madimi-one-regular {
-	font-family: "Madimi One", sans-serif;
-	font-weight: 400;
-	font-style: normal;
-}
-
-.navbar .logo h1 {
-	color: var(--primary-color);
-}
-
-.navbar .logo img {
-	max-width: 100%;
-	height: auto;
+  color: var(--primary);
+  text-decoration: none;
 }
 
 .navbar .links {
@@ -41,22 +28,25 @@
 	display: inline-flex;
 	align-items: center;
 	color: #fff;
-	background-color: var(--primary-color);
+	background: var(--background);
+  border: 1px solid var(--primary);
 	border-radius: 8px;
-	padding: 6px 12px;
-	transition: background-color 0.3s ease;
+	padding: 6px 16px;
+	transition: transform 0.3s ease, box-shadow 0.3s ease 0s;
 	font-size: 15px;
 	cursor: pointer;
 	gap: 8px;
   height: fit-content;
+  text-decoration: none;
 }
 
 .navbar .links .bubble:hover {
-	background-color: var(--primary-dark);
+	transform: translateY(-2px) translateX(-2px);
+  box-shadow: 0 0 10px var(--primary);
 }
 
 .navbar .links button {
-	margin-left: 16px;
+	margin-left: 20px;
 	text-decoration: none;
 	transition: color 0.2s ease;
 	text-align: center;
@@ -64,17 +54,8 @@
 	cursor: pointer;
 }
 
-.navbar a {
-	text-decoration: none;
-	padding: 6px;
-	transition: color 0.2s ease;
-}
-.navbar a:hover {
-	color: var(--primary-color);
-}
-
 .account-button {
-  color: var(--primary-color);
+  color: var(--primary);
   background: none;
   border-radius: 50px;
   cursor: pointer;
@@ -84,11 +65,11 @@
 .account-button svg {
   width: 30px;
   height: 30px;
-  fill: var(--primary-color);
+  fill: var(--primary);
   transition: fill 0.3s ease;
   transform: translateY(2px);
 }
 
 .account-button:hover {
-  color: var(--primary-dark);
+  color: var(--hover);
 }

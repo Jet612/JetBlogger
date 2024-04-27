@@ -1,6 +1,9 @@
 .account-info {
-  max-width: 500px;
-  margin: 0 auto;
+  padding: 40px 50px;
+  margin: 20px auto 0 auto;
+  background: var(--background-secondary);
+  border: none;
+  border-radius: 8px;
 }
 
 .edit-account {
@@ -18,24 +21,34 @@
 }
 
 .section input {
+  color: var(--text);
   width: 100%;
-  padding: 6px 10px;
+  padding: 10px 14px;
   margin: 10px 0;
-  border: 1px solid #ddd;
+  border: 1px solid var(--border);
   box-sizing: border-box;
   border-radius: 5px;
   display: block;
   resize: none;
   overflow: hidden;
+  background: none;
+  font-size: 15px;
 }
 
 .section input:disabled {
-  background: #e2e2e2;
+  background: var(--disabled-background);
+  border: none;
   cursor: not-allowed;
+  color: var(--disabled-text);
+}
+
+.section input:focus {
+  outline: none;
+  border: 1px solid var(--primary);
 }
 
 .edit-account button {
-  background: var(--primary-color);
+  background: var(--primary);
   color: #fff;
   border: 0;
   padding: 10px;
@@ -44,14 +57,14 @@
   font-size: 15px;
   width: 100%;
   transition: background 0.3s ease;
-  margin-bottom: 10px;
+  margin-bottom: 14px;
 }
 
 .edit-account button:hover {
-  background: var(--primary-dark);
+  background: var(--hover);
 }
 
 .edit-account button:disabled {
-  background: var(--primary-lighter);
+  background: var(--disabled-background);
   cursor: not-allowed;
 }
