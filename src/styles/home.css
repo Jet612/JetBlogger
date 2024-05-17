@@ -3,8 +3,15 @@
   justify-content: space-between;
 }
 
+.home-header {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
 .filter-buttons {
   display: flex;
+  flex: 3;
 }
 
 .filter-buttons button {
@@ -33,6 +40,22 @@
   height: 4px; /* Adjust the height of the border */
   background-color: var(--primary);
   border-radius: 20px; /* Adjust the border radius */
+}
+
+.sort-by {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex: 1;
+}
+
+.sort-by select {
+    padding: 12px 16px;
+    font-size: 16px;
+    color: var(--text);
+    background-color: var(--background-secondary);
+    border: none;
+    border-radius: 8px;
 }
 
 .blog-preview {
