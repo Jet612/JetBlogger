@@ -29,7 +29,7 @@ const useFetchUser = (userId) => { // Accept filter as an optional parameter
     };
 
     fetchBlogs();
-  }, [userId]); // Add filter to the dependency array
+  }, [userId]);
 
   return { user, isPending, error };
 };
