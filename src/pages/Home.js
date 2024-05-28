@@ -1,16 +1,18 @@
 import { useState } from 'react';
 import BlogList from '../components/BlogList';
+import SearchBox from '../components/SearchBox'; // Import the SearchBox component
 import useFetchBlogs from '../utils/useFetchBlogs';
 import { useUserContext } from '../utils/UserContext';
 import '../styles/home.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowDown, faArrowUp } from '@awesome.me/kit-a2ceb3a490/icons/classic/solid'; // Corrected import path
+import { faMagnifyingGlass } from '@awesome.me/kit-a2ceb3a490/icons/classic/solid';
 
 const Home = () => {
   const { authUser } = useUserContext();
   const [filter, setFilter] = useState(null);
-  const [sortCriterion, setSortCriterion] = useState('date-desc');
-  const { blogs, isPending, error } = useFetchBlogs(filter);
+  const [searchQuery, setSearchQuery] = useState('');
+  const { blogs, isPending, error } = useFetchBlogs(filter, searchQuery);
+  const [showSearch, setShowSearch] = useState(false);
 
   const handleFilterAll = () => {
     setFilter(null);
@@ -20,20 +22,23 @@ const Home = () => {
     setFilter(authUser.uid);
   };
 
-  const handleSortChange = (event) => {
-    setSortCriterion(event.target.value);
+  const handleSearchClick = () => {
+    setShowSearch(!showSearch);
   };
 
-  const sortBlogs = (blogs, criterion) => {
-    if (!criterion || criterion === 'date-desc') return blogs;
-    if (criterion === 'date-asc') return [...blogs].reverse();
-    return blogs;  // default to date-desc
+  const handleCloseSearch = () => {
+    setShowSearch(false);
   };
-
-  const sortedBlogs = sortBlogs(blogs, sortCriterion);
 
   return (
     <div className="home">
+      {showSearch && (
+        <SearchBox
+          searchQuery={searchQuery}
+          setSearchQuery={setSearchQuery}
+          onClose={handleCloseSearch}
+        />
+      )}
       {authUser ? (
         <div className="home-header">
           <div className="filter-buttons">
@@ -44,21 +49,18 @@ const Home = () => {
               Your Blogs
             </button>
           </div>
-          <div className="sort-by">
-            <select onChange={handleSortChange} value={sortCriterion}>
-              <option value="date-desc">Date <FontAwesomeIcon icon={faArrowDown} /></option>
-              <option value="date-asc">Date <FontAwesomeIcon icon={faArrowUp} /></option>
-            </select>
+          <div className="search">
+            <button onClick={handleSearchClick}>
+              <FontAwesomeIcon icon={faMagnifyingGlass} />
+            </button>
           </div>
         </div>
       ) : (
         <h2>All Blogs</h2>
       )}
-      {error && <div>{error}</div>}
+      {error && <div>{error}</div>} {/* Ensure error is displayed as string */}
       {isPending && <h2>Loading...</h2>}
-      {!isPending && sortedBlogs && (
-        <BlogList blogs={sortedBlogs} />
-      )}
+      {!isPending && blogs && <BlogList blogs={blogs} />}
     </div>
   );
 }
