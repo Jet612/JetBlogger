@@ -1,11 +1,9 @@
 import { Link } from "react-router-dom";
 import DisplayUsername from "./DisplayUsername";
-import showdown from 'showdown'; // Import showdown
+import showdown from 'showdown';
 
 const BlogList = ({ blogs }) => {
-  // Function to convert markdown to plain text
   const markdownToPlainText = (markdown) => {
-    // Create a showdown converter
     const converter = new showdown.Converter();
     // Convert markdown to HTML
     const html = converter.makeHtml(markdown);
