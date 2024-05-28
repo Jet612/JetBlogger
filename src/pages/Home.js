@@ -1,6 +1,5 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import BlogList from '../components/BlogList';
-import SearchBox from '../components/SearchBox'; // Import the SearchBox component
 import useFetchBlogs from '../utils/useFetchBlogs';
 import { useUserContext } from '../utils/UserContext';
 import '../styles/home.css';
@@ -11,8 +10,8 @@ const Home = () => {
   const { authUser } = useUserContext();
   const [filter, setFilter] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
-  const { blogs, isPending, error } = useFetchBlogs(filter, searchQuery);
-  const [showSearch, setShowSearch] = useState(false);
+  const [currentQuery, setCurrentQuery] = useState('');
+  const { blogs, isPending, error } = useFetchBlogs(filter, currentQuery);
 
   const handleFilterAll = () => {
     setFilter(null);
@@ -22,27 +21,17 @@ const Home = () => {
     setFilter(authUser.uid);
   };
 
-  const handleSearchClick = () => {
-    setShowSearch(!showSearch);
-  };
-
-  const handleCloseSearch = () => {
-    setShowSearch(false);
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    setCurrentQuery(searchQuery);
   };
 
   return (
     <div className="home">
-      {showSearch && (
-        <SearchBox
-          searchQuery={searchQuery}
-          setSearchQuery={setSearchQuery}
-          onClose={handleCloseSearch}
-        />
-      )}
       {authUser ? (
         <div className="home-header">
           <div className="filter-buttons">
-            <button className={filter ? '' : 'active'} onClick={handleFilterAll}>
+            <button className={!filter ? 'active' : ''} onClick={handleFilterAll}>
               All Blogs
             </button>
             <button className={filter ? 'active' : ''} onClick={handleFilterUser}>
@@ -50,19 +39,29 @@ const Home = () => {
             </button>
           </div>
           <div className="search">
-            <button onClick={handleSearchClick}>
-              <FontAwesomeIcon icon={faMagnifyingGlass} />
-            </button>
+            <form onSubmit={handleSearchSubmit} style={{ display: 'flex', width: '100%' }}>
+              <div className="search-wrapper">
+                <input
+                  type="text"
+                  placeholder="Search..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                />
+                <button type="submit">
+                  <FontAwesomeIcon icon={faMagnifyingGlass} />
+                </button>
+              </div>
+            </form>
           </div>
         </div>
       ) : (
         <h2>All Blogs</h2>
       )}
-      {error && <div>{error}</div>} {/* Ensure error is displayed as string */}
+      {error && <div>{error}</div>}
       {isPending && <h2>Loading...</h2>}
       {!isPending && blogs && <BlogList blogs={blogs} />}
     </div>
   );
-}
+};
 
 export default Home;
